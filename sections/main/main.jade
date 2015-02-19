@@ -1,0 +1,45 @@
+doctype html
+#content
+  // heading
+  #heading.row
+    h1.title ng-2048
+    .scores-container
+      .score-container {{ctrl.game.currentScore}}
+      .best-container {{ctrl.game.highScore}}
+  // instructions
+  #instructions.row
+    | Join the numbers and get to the 
+    strong 2048
+    |  tile!
+    button.restart-button(
+      ng-click = 'ctrl.newGame()'
+    ) New game
+  #game-container
+    .row(
+      grid
+      ng-model = 'ctrl.game'
+    )
+    #game-over.row.game-overlay(
+      ng-if = 'ctrl.game.gameOver'
+    ) Game over
+      .lower
+        a.retry-button(
+          ng-click='ctrl.newGame()'
+        ) Try again
+    #win.row.game-overlay(
+      ng-if='ctrl.game.win'
+    ) You win!
+      .lower
+        a.retry-button(
+          ng-click='ctrl.newGame()'
+        ) Try again
+  p.game-explanation
+    strong.important How to play:
+    |  Use your 
+    strong arrow keys
+    |  to move the tiles. When two tiles with the same number touch, they 
+    strong merge into one!
+  hr
+  p
+    strong.important NOTE:
+    |  This game was written using AngularJS.
